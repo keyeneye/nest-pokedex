@@ -19,7 +19,7 @@ export class PokemonController {
   constructor(private readonly pokemonService: PokemonService) {}
 
   @Post()
-  @HttpCode(HttpStatus.CREATED) //Sirve para personalizar status de las respuestas
+  @HttpCode(HttpStatus.CREATED) //Sirve para personalizar status de las respuestas 123
   create(@Body() createPokemonDto: CreatePokemonDto) {
     console.log(createPokemonDto);
     return this.pokemonService.create(createPokemonDto);
