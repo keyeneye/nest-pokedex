@@ -21,8 +21,12 @@ export class PokemonController {
   @Post()
   @HttpCode(HttpStatus.CREATED) //Sirve para personalizar status de las respuestas
   create(@Body() createPokemonDto: CreatePokemonDto) {
-    console.log(createPokemonDto);
     return this.pokemonService.create(createPokemonDto);
+  }
+
+  @Post('seed')
+  createAll(@Body() createPokemonDto: CreatePokemonDto[]) {
+    return this.pokemonService.createMany(createPokemonDto);
   }
 
   @Get()
