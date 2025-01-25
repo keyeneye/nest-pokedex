@@ -8,11 +8,13 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Query,
 } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -21,13 +23,17 @@ export class PokemonController {
   @Post()
   @HttpCode(HttpStatus.CREATED) //Sirve para personalizar status de las respuestas 123
   create(@Body() createPokemonDto: CreatePokemonDto) {
-    console.log(createPokemonDto);
     return this.pokemonService.create(createPokemonDto);
   }
 
+  @Post('seed')
+  createAll(@Body() createPokemonDto: CreatePokemonDto[]) {
+    return this.pokemonService.createMany(createPokemonDto);
+  }
+
   @Get()
-  findAll() {
-    return this.pokemonService.findAll();
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.pokemonService.findAll(paginationDto);
   }
 
   @Get(':term')
