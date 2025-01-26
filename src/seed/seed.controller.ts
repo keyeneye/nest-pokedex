@@ -9,4 +9,9 @@ export class SeedController {
   execSeed(@Param('many', ParseIntPipe) many: string) {
     return this.seedService.execSeed(many);
   }
+
+  @Get()
+  clearSeed() {
+    return this.seedService.clearSeed();
+  }
 }

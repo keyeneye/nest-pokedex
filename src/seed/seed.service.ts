@@ -26,4 +26,9 @@ export class SeedService {
     await this.pokemonService.createMany(pokemonToInsert);
     return `Seeding completed`;
   }
+
+  async clearSeed() {
+    await this.pokemonService.removeAll();
+    return `Seed cleared`;
+  }
 }
